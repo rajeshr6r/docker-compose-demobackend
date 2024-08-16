@@ -1,0 +1,48 @@
+
+# Local 
+# Simple Healthcheck
+
+GET http://0.0.0.0:8000/ HTTP/1.1
+
+###
+# Sample Payload
+
+POST http://0.0.0.0:8000/saveblogentry/ 
+
+{
+  "blogtitle": "my first blog entry",
+  "description": "",
+  "tags": "",
+  "author": ""
+}
+
+###
+# Sample Fetch Request 
+GET http://0.0.0.0:8000/getblogentries?q=my first blog entry
+
+###
+# Remote
+# Simple Healthcheck
+
+GET http://18.218.224.90:8000/ HTTP/1.1
+
+###
+# Sample Payload
+
+POST http://18.218.224.90:8000/saveblogentry/ 
+
+{
+  "blogtitle": "my second blog entry",
+  "description": "",
+  "tags": "",
+  "author": ""
+}
+
+###
+# Sample Fetch Request 
+GET http://18.218.224.90:8000/getblogentries?q=my second blog entry
+
+###
+
+GET https://y4d7tz6r02.execute-api.us-east-2.amazonaws.com/dev/healthcheck
+

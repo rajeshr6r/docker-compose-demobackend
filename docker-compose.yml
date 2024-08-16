@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+
+  mongo_db:
+    container_name: databasecontainer
+    image: mongodb/mongodb-community-server
+    restart: always
+    networks:
+      - default
+    ports:
+      - 27017:27017
+    volumes:      
+      - databasevolume:/data/db
+
+  pythonapi:
+    container_name: apicontainer
+    depends_on:
+      - mongo_db
+    links:
+      - mongo_db
+    networks:
+      - default    
+    environment:
+      MONGODB_URI: mongodb://mongo_db:27017 
+      MONGODB_NAME : blogs
+      MONGODB_COLLETION_NAME : blogentries
+      PYTHONUNBUFFERED: 'true'
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8000:8000
+volumes:
+  databasevolume:
